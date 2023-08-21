@@ -7,6 +7,12 @@ resource "aws_security_group" "db" {
   tags = merge({
     Name = "${local.tag_prefix}-db-sg"
   }, var.additional_tags)
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
 
 resource "aws_security_group" "app" {
@@ -17,6 +23,12 @@ resource "aws_security_group" "app" {
   tags = merge({
     Name = "${local.tag_prefix}-db-sg"
   }, var.additional_tags)
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
 
 resource "aws_security_group" "web" {
@@ -27,4 +39,10 @@ resource "aws_security_group" "web" {
   tags = merge({
     Name = "${local.tag_prefix}-db-sg"
   }, var.additional_tags)
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
